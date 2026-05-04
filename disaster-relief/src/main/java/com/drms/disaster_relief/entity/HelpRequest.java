@@ -1,17 +1,25 @@
 package com.drms.disaster_relief.entity;
 
+import jakarta.persistence.*;
 import lombok.Data;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.UUID;
 
 @Data
+@Entity
 public class HelpRequest {
-
+    @Id
+    @GeneratedValue
     private UUID requestId;
 
-    private UUID userId;
+    @ManyToOne
+    @JoinColumn(name="userId")
+    private User user;
 
-    private UUID cityId;
+    @ManyToOne
+    @JoinColumn(name = "cityId")
+    private City cityId;
 
     private String area;
 
@@ -32,4 +40,7 @@ public class HelpRequest {
     private LocalDateTime createdAt;
 
     private LocalDateTime updatedAt;
+
+    @OneToMany(mappedBy = "logId")
+    private List<HelpRequestLog> requestLog;
 }

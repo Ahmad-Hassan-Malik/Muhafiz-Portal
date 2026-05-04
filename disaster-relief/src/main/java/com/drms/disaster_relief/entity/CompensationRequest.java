@@ -1,17 +1,27 @@
 package com.drms.disaster_relief.entity;
 
+import jakarta.persistence.*;
 import lombok.Data;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Data
+@Entity
 public class CompensationRequest {
-
+    @Id
+    @GeneratedValue
     private UUID requestId;
 
-    private UUID userId;
+    @OneToOne
+    @JoinColumn(name = "userId")
+    private User user;
 
-    private UUID cityId;
+    @OneToOne (mappedBy = "proofId")
+    private CompensationProof proof;
+
+    @ManyToOne
+    @JoinColumn(name = "cityId")
+    private City city;
 
     private String damageType;
 

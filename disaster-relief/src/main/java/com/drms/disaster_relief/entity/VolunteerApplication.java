@@ -1,17 +1,24 @@
 package com.drms.disaster_relief.entity;
 
+import jakarta.persistence.*;
 import lombok.Data;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Data
+@Entity
 public class VolunteerApplication {
-
+    @Id
+    @GeneratedValue
     private UUID applicationId;
 
-    private UUID userId;
+    @ManyToOne
+    @JoinColumn(name = "userId")
+    private User user;
 
-    private UUID ngoId;
+    @ManyToOne
+    @JoinColumn(name = "ngoId")
+    private NGO ngo;
 
     private String skills;
 

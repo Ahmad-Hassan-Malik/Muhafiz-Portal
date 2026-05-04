@@ -1,18 +1,27 @@
 package com.drms.disaster_relief.entity;
 
+import jakarta.persistence.*;
 import lombok.Data;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Data
+@Entity
 public class TaskCompletionReport {
-
+    @Id
+    @GeneratedValue
     private UUID reportId;
 
-    private UUID missionId;
+    @ManyToOne
+    @JoinColumn(name = "missionId")
+    private UUID mission;
 
-    private UUID ngoId;
+    @ManyToOne
+    @JoinColumn(name = "ngoId")
+    private NGO ngo;
 
+    @ManyToOne
+    @JoinColumn(name = "employeeId")
     private UUID approvedBy;
 
     private int peopleHelped;

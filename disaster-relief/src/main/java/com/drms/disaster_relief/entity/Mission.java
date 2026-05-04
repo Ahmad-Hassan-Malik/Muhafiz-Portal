@@ -1,22 +1,34 @@
 package com.drms.disaster_relief.entity;
 
+import jakarta.persistence.*;
 import lombok.Data;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.UUID;
 
 @Data
+@Entity
 public class Mission {
-
+    @Id
+    @GeneratedValue
     private UUID missionId;
 
-    private UUID requestId;
+    @OneToOne
+    @JoinColumn(name="requestId")
+    private HelpRequest request;
 
-    private UUID cityId;
+    @ManyToOne
+    @JoinColumn(name = "cityId")
+    private City city;
 
-    private UUID branchId;
+    @ManyToOne
+    @JoinColumn(name="branchId")
+    private Branch branch;
 
-    private UUID createdBy;
+    @ManyToOne
+    @JoinColumn(name = "employeeId")
+    private Employee createdBy;
 
     private String missionName;
 
@@ -43,4 +55,9 @@ public class Mission {
     private LocalDateTime createdAt;
 
     private LocalDateTime updatedAt;
+
+    @OneToMany(mappedBy = "assignmentId",
+            fetch = FetchType.LAZY
+    )
+    private List<MissionCrewAssignment> crewAssignment;
 }

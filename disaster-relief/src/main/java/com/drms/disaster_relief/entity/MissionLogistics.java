@@ -1,19 +1,28 @@
 package com.drms.disaster_relief.entity;
 
+import jakarta.persistence.*;
 import lombok.Data;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Data
+@Entity
 public class MissionLogistics {
-
+    @Id
+    @GeneratedValue
     private UUID id;
 
-    private UUID missionId;
+    @OneToOne
+    @JoinColumn(name = "missionId")
+    private Mission mission;
 
-    private UUID logisticsId;
+    @ManyToOne
+    @JoinColumn(name = "logisticsId")
+    private Logistics logistics;
 
-    private UUID confirmedBy;
+    @ManyToOne
+    @JoinColumn(name = "employeeId")
+    private Employee confirmedBy;
 
     private String returnStatus;
 

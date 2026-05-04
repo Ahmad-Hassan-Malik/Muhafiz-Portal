@@ -1,17 +1,24 @@
 package com.drms.disaster_relief.entity;
 
+import jakarta.persistence.*;
 import lombok.Data;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Data
+@Entity
 public class MissionLog {
-
+    @Id
+    @GeneratedValue
     private UUID logId;
 
-    private UUID missionId;
+    @ManyToOne
+    @JoinColumn(name = "missionId")
+    private Mission mission;
 
-    private UUID changedBy;
+    @ManyToOne
+    @JoinColumn(name = "employeeId")
+    private Employee changedBy;
 
     private String changedByType;
 

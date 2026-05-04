@@ -14,7 +14,7 @@ target/
 .sts4-cache
 
 ### IntelliJ IDEA ###
-.idea
+.idea/
 *.iws
 *.iml
 *.ipr
@@ -33,3 +33,7 @@ build/
 .vscode/
 
 src/main/resources/application.properties
+
+# Ignore IntelliJ IDEA project files
+out/
+gen/
