@@ -14,7 +14,7 @@ public class TaskCompletionReport {
 
     @ManyToOne
     @JoinColumn(name = "missionId")
-    private UUID mission;
+    private Mission mission;
 
     @ManyToOne
     @JoinColumn(name = "ngoId")
@@ -22,7 +22,7 @@ public class TaskCompletionReport {
 
     @ManyToOne
     @JoinColumn(name = "employeeId")
-    private UUID approvedBy;
+    private Employee approvedBy;
 
     private int peopleHelped;
 

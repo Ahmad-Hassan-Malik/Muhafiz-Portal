@@ -2,7 +2,7 @@ package com.drms.disaster_relief.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
-import org.apache.coyote.Request;
+import com.drms.disaster_relief.entity.CompensationRequest;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
@@ -17,7 +17,7 @@ public class CompensationProof {
 
     @OneToOne
     @JoinColumn(name="requestId")
-    private Request request;
+    private CompensationRequest request;
 
     @OneToOne
     @JoinColumn(name="employeeId")

@@ -16,7 +16,7 @@ public class CompensationRequest {
     @JoinColumn(name = "userId")
     private User user;
 
-    @OneToOne (mappedBy = "proofId")
+    @OneToOne (mappedBy = "request")
     private CompensationProof proof;
 
     @ManyToOne
